@@ -4,7 +4,8 @@ import com.typesafe.config.{ConfigFactory}
 
 
 class ConfigParser(val zookeeperQuorum: String,
-                   val bootstrapServers: String) {
+                   val bootstrapServers: String,
+                   val groupId: String) {
 
   override def toString: String = s"Args: \n\t$zookeeperQuorum \n\t$bootstrapServers"
 }
@@ -20,7 +21,8 @@ object ConfigParser {
 
       Option(new ConfigParser(
         conf.getString("zookeeper.properties.zk.quorum"),
-        conf.getString("kafka.properties.bootstrap.servers"))
+        conf.getString("kafka.properties.bootstrap.servers"),
+        conf.getString("kafka.properties.group.id"))
       )
     }
     catch {
